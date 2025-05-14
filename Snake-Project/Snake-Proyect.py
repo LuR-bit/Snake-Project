@@ -1,6 +1,4 @@
 import pygame
-import sys
-import time
 import random
 
 #iniciar el juego
@@ -15,13 +13,13 @@ little_window = pygame.display.set_mode((ancho, alto))
 pygame.display.set_caption("Snake Game :3")
 
 #pintar el fondo
-little_window.fill((0,0,0))
+little_window.fill((1,19,10))
 
 #frames per second
 clock = pygame.time.Clock()
 
 #color de la serpiente
-rosa = pygame.Color(238,74,139)
+green = pygame.Color(52, 232, 31)
 
 # Estructura de serpiente 
 S_position = [100, 50]
@@ -89,7 +87,7 @@ def juego():
         else:
           S_body.pop()
    
-        little_window.fill((0, 0, 0))
+        little_window.fill((1, 19, 10))
         
         #chocar con los bordes
         if S_position[0] < 0 or S_position[0] > 500 or S_position[1] < 0 or S_position[1] > 500 or S_position in S_body[1:]: 
@@ -98,11 +96,12 @@ def juego():
 
         #mostrar la serpiente y la comida
         for pos in S_body:
-            pygame.draw.rect(little_window, rosa, pygame.Rect(pos[0], pos[1], 10, 10))
+            pygame.draw.rect(little_window, green, pygame.Rect(pos[0], pos[1], 10, 10))
     
         pygame.draw.rect(little_window,(169,6,6), pygame.Rect(comida_pos[0], comida_pos[1], 10, 10))
         show_score(score)
         
+        #para cambiar la velocidad de la serpiente segun el puntaje
         if score < 10:
            clock.tick(10)
         if score >= 10:
