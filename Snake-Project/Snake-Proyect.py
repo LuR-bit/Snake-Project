@@ -21,10 +21,6 @@ clock = pygame.time.Clock()
 #color de la serpiente
 green = pygame.Color(52, 232, 31)
 
-# Estructura de serpiente 
-S_position = [100, 50]
-S_body = [[100,50],[90,50],[80,50]]
-
 #tamaño de comida
 tamano_bloque = 10
 
@@ -41,7 +37,10 @@ def juego():
     score = 0
     largo_serpiente = 1
     change = "RIGHT"
-    
+    # Estructura de serpiente 
+    S_position = [100, 50]
+    S_body = [[100,50],[90,50],[80,50]]
+
     comida_pos = [random.randrange(0, 500, tamano_bloque),
                  random.randrange(0, 500, tamano_bloque)]
 
@@ -93,7 +92,8 @@ def juego():
         if S_position[0] < 0 or S_position[0] > 500 or S_position[1] < 0 or S_position[1] > 500 or S_position in S_body[1:]: 
            game_over(score)
         
-
+           
+    
         #mostrar la serpiente y la comida
         for pos in S_body:
             pygame.draw.rect(little_window, green, pygame.Rect(pos[0], pos[1], 10, 10))
@@ -128,6 +128,7 @@ def game_over(score):
                     exit()
                 elif event.key == pygame.K_r:
                      juego()
-                pygame.display.flip()
+                
+        
 juego()
   
